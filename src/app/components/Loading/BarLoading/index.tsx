@@ -17,17 +17,11 @@ interface IProps {
   width?: string;
 }
 
-const BarLoading: FC<IProps> = props => {
-  const { color, loading, css, height, width } = props;
+export const BarLoading: FC<IProps> = props => {
+  const { loading } = props;
   return loading ? (
     <Backdrop>
-      <BarLoader
-        color={color}
-        loading={loading}
-        css={css}
-        height={height}
-        width={width}
-      />
+      <BarLoader {...props} />
     </Backdrop>
   ) : null;
 };
@@ -37,5 +31,3 @@ BarLoading.defaultProps = {
   css: override,
   width: '100%',
 };
-
-export default BarLoading;
