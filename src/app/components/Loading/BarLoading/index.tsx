@@ -1,33 +1,34 @@
-import React, { CSSProperties, FC } from 'react';
-import { BarLoader } from 'react-spinners';
-
+import React, { FC, useState, useEffect } from 'react';
+import { Progress, ProgressProps } from '@chakra-ui/react';
 import Backdrop from 'app/components/Backdrop';
 
-const override: CSSProperties = {
-  display: 'block',
-  margin: '0 auto',
-  borderColor: 'red',
-};
-
-interface IProps {
-  color?: string;
+interface IProps extends ProgressProps {
   loading: boolean;
-  css?: any;
-  height?: string;
-  width?: string;
 }
 
 export const BarLoading: FC<IProps> = props => {
-  const { loading } = props;
+  const { loading, value, ...rest } = props;
+
+  const [customValue, setCustomValue] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCustomValue(prev =>
+        prev < 88 ? prev + Math.floor(Math.random() * 10) + 20 : prev,
+      );
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
+
   return loading ? (
     <Backdrop>
-      <BarLoader {...props} />
+      <Progress value={customValue} {...rest} />
     </Backdrop>
   ) : null;
 };
 
 BarLoading.defaultProps = {
-  color: 'green',
-  css: override,
-  width: '100%',
+  loading: false,
+  size: 'xs',
+  colorScheme: 'pink',
 };
