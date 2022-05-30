@@ -1,5 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Progress, ProgressProps } from '@chakra-ui/react';
+import { useInterval } from 'react-use';
+
 import Backdrop from 'app/components/Backdrop';
 
 interface IProps extends ProgressProps {
@@ -7,22 +9,32 @@ interface IProps extends ProgressProps {
 }
 
 export const BarLoading: FC<IProps> = props => {
-  const { loading, value, ...rest } = props;
+  const { loading, value, max = 100, ...rest } = props;
 
   const [customValue, setCustomValue] = useState(0);
+  const [show, setShow] = useState(true);
+
+  useInterval(() => {
+    setCustomValue(prev =>
+      prev < max - 25 ? prev + Math.floor(Math.random() * 10) + 14 : prev,
+    );
+  }, 100);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCustomValue(prev =>
-        prev < 68 ? prev + Math.floor(Math.random() * 10) + 15 : prev,
-      );
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
+    if (!loading) {
+      setCustomValue(max);
+    }
+  }, [loading, max]);
 
-  return loading ? (
+  useEffect(() => {
+    if (customValue === max) {
+      setShow(false);
+    }
+  }, [customValue, max]);
+
+  return show ? (
     <Backdrop>
-      <Progress value={customValue} {...rest} />
+      <Progress max={max} value={customValue} {...rest} />
     </Backdrop>
   ) : null;
 };
@@ -31,4 +43,6 @@ BarLoading.defaultProps = {
   loading: false,
   size: 'xs',
   colorScheme: 'pink',
+  max: 100,
+  min: 0,
 };

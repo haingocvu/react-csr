@@ -15,12 +15,9 @@ import {
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { BarLoading } from 'app/components/Loading/BarLoading/Loadable';
-
 export function SigninForm() {
   return (
     <>
-      <BarLoading loading={true} />
       <form>
         <Flex
           minH={'100vh'}
