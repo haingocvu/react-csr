@@ -14,7 +14,7 @@ export const BarLoading: FC<IProps> = props => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCustomValue(prev =>
-        prev < 88 ? prev + Math.floor(Math.random() * 10) + 20 : prev,
+        prev < 68 ? prev + Math.floor(Math.random() * 10) + 15 : prev,
       );
     }, 100);
     return () => clearInterval(interval);
