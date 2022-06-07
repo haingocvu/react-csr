@@ -12,12 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { Routes, Route } from 'react-router-dom';
 
 import { GlobalStyle } from 'styles/global-styles';
-import { HomePage } from 'app/pages/Home/Loadable';
 import { NotFoundPage } from 'app/pages/NotFound/Loadable';
-import { SigninPage } from 'app/pages/Signin/Loadable';
-import { SignupPage } from 'app/pages/Signup/Loadable';
-import { ForgotPasswordPage } from 'app/pages/ForgotPassword/Loadable';
-import { ContactPage } from 'app/pages/Contact/Loadable';
 import { SandboxPage } from 'app/pages/Sandbox/Loadable';
 
 export function App() {
@@ -33,12 +28,7 @@ export function App() {
       </Helmet>
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signin" element={<SigninPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/sandbox" element={<SandboxPage />} />
+        <Route path="/" element={<SandboxPage />} />
         <Route element={<NotFoundPage />} />
       </Routes>
       <GlobalStyle />
