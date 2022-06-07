@@ -18,6 +18,7 @@ import { SigninPage } from 'app/pages/Signin/Loadable';
 import { SignupPage } from 'app/pages/Signup/Loadable';
 import { ForgotPasswordPage } from 'app/pages/ForgotPassword/Loadable';
 import { ContactPage } from 'app/pages/Contact/Loadable';
+import { SandboxPage } from 'app/pages/Sandbox/Loadable';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -37,6 +38,7 @@ export function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/sandbox" element={<SandboxPage />} />
         <Route element={<NotFoundPage />} />
       </Routes>
       <GlobalStyle />
