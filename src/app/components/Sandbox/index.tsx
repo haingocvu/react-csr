@@ -29,7 +29,7 @@ export function Sandbox() {
         onClick={scrollTop}
         style={{ display: showScroll ? 'inline' : 'none' }}
       />
-      <LongContent>This is long content demo</LongContent>
+      <LongContent>Scroll down to see the arrow</LongContent>
     </>
   );
 }
